@@ -1,4 +1,4 @@
-# Auto-generated YOLOv8m-pose combo. Steps: #1,#2,#4
+# YOLO11m-Pose architecture config (see filename for modules)
 nc: 9
 kpt_shape: [1, 3]
 scales:
@@ -37,4 +37,7 @@ head:
   - [-1, 1, Conv, [512, 3, 2]]
   - [[-1, 11], 1, Concat, [1]]
   - [-1, 3, C2f, [1024]]
-  - [[18, 21, 24], 1, Pose, ['nc', 'kpt_shape']]
+  - [18, 1, PDCA, [192]]
+  - [21, 1, PDCA, [384]]
+  - [24, 1, PDCA, [576]]
+  - [[25, 26, 27], 1, Pose, ['nc', 'kpt_shape']]

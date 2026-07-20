@@ -1,4 +1,4 @@
-# Auto-generated YOLOv8m-pose combo. Steps: PDCA
+# YOLO11m-Pose architecture config (see filename for modules)
 nc: 9
 kpt_shape: [1, 3]
 scales:

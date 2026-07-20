@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Method comparison: YOLO11m and YOLOv8m (baseline, combo, PDCA, combo+PDCA).
+# Method comparison: YOLO11m and YOLOv8m (baseline, ECA+CBAM+C2PSA, PDCA, full model).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"

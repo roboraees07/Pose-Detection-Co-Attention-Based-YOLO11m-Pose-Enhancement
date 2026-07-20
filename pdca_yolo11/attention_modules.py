@@ -6,9 +6,8 @@ import math
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
-__all__ = ("ECA", "DCN", "SE", "SADA", "PDCA", "SAWA", "KUG", "LSAM", "register_attention_modules")
+__all__ = ("ECA", "DCN", "SE", "PDCA", "LSAM", "register_attention_modules")
 
 
 class ECA(nn.Module):
@@ -48,33 +47,6 @@ class SE(nn.Module):
         return x * self.fc(self.pool(x))
 
 
-class SADA(nn.Module):
-    """Stem-Aware Directional Attention — row/column/local gates on P3 neck features."""
-
-    def __init__(self, channels: int, reduction: int = 16) -> None:
-        super().__init__()
-        hidden = max(channels // reduction, 8)
-        self.conv1 = nn.Conv2d(channels, hidden, kernel_size=1, bias=False)
-        self.bn = nn.BatchNorm2d(hidden)
-        self.conv_h = nn.Conv2d(hidden, channels, kernel_size=1, bias=False)
-        self.conv_w = nn.Conv2d(hidden, channels, kernel_size=1, bias=False)
-        self.conv_s = nn.Conv2d(channels, 1, kernel_size=3, padding=1, bias=False)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        b, c, h, w = x.shape
-        z_h = x.mean(dim=3, keepdim=True)
-        z_w = x.mean(dim=2, keepdim=True)
-        z_w_t = z_w.permute(0, 1, 3, 2)
-        u = torch.cat([z_h, z_w_t], dim=2)
-        f = F.silu(self.bn(self.conv1(u)))
-        f_h, f_w = torch.split(f, [h, w], dim=2)
-        f_w = f_w.permute(0, 1, 3, 2)
-        a_h = torch.sigmoid(self.conv_h(f_h))
-        a_w = torch.sigmoid(self.conv_w(f_w))
-        a_s = torch.sigmoid(self.conv_s(x))
-        return x * a_h * a_w * a_s
-
-
 class PDCA(nn.Module):
     """Pose-Detection Co-Attention — cross-gate box/pose paths before the Pose head."""
 
@@ -93,46 +65,6 @@ class PDCA(nn.Module):
         box_g = torch.sigmoid(self.box_gate(x_pose))
         pose_g = torch.sigmoid(self.pose_gate(x_box))
         return self.fuse(x * box_g + x * pose_g)
-
-
-class SAWA(nn.Module):
-    """Scale-Adaptive Weed Attention — multi-scale DW conv + avg/max channel gate."""
-
-    def __init__(self, channels: int, reduction: int = 16) -> None:
-        super().__init__()
-        hidden = max(channels // reduction, 8)
-        self.dw3 = nn.Conv2d(channels, channels, 3, padding=1, groups=channels, bias=False)
-        self.dw5 = nn.Conv2d(channels, channels, 5, padding=2, groups=channels, bias=False)
-        self.dw7 = nn.Conv2d(channels, channels, 7, padding=3, groups=channels, bias=False)
-        self.pool_fc = nn.Sequential(
-            nn.Conv2d(channels * 2, hidden, 1, bias=False),
-            nn.SiLU(inplace=True),
-            nn.Conv2d(hidden, channels, 1, bias=False),
-            nn.Sigmoid(),
-        )
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        ms = self.dw3(x) + self.dw5(x) + self.dw7(x)
-        gate = self.pool_fc(torch.cat([x.mean(dim=(2, 3), keepdim=True), x.amax(dim=(2, 3), keepdim=True)], dim=1))
-        return x * gate + ms * 0.1
-
-
-class KUG(nn.Module):
-    """Keypoint Uncertainty Gate — feature confidence gate (inference-safe forward)."""
-
-    def __init__(self, channels: int, reduction: int = 16) -> None:
-        super().__init__()
-        hidden = max(channels // reduction, 8)
-        self.gate = nn.Sequential(
-            nn.AdaptiveAvgPool2d(1),
-            nn.Conv2d(channels, hidden, 1, bias=False),
-            nn.SiLU(inplace=True),
-            nn.Conv2d(hidden, channels, 1, bias=False),
-            nn.Sigmoid(),
-        )
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return x * self.gate(x)
 
 
 class LSAM(nn.Module):
@@ -189,10 +121,7 @@ def register_attention_modules() -> None:
         ("ECA", ECA),
         ("SE", SE),
         ("DCN", DCN),
-        ("SADA", SADA),
         ("PDCA", PDCA),
-        ("SAWA", SAWA),
-        ("KUG", KUG),
         ("LSAM", LSAM),
         ("CBAM", CBAM),
     )

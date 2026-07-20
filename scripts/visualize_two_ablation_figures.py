@@ -3,7 +3,7 @@
 Two prediction ablation figures:
 
 Figure 1 — single-module comparison (proposed = Dat + PDCA)
-Figure 2 — cumulative combo comparison (proposed = Dat + ECA + CBAM + C2PSA + PDCA)
+Figure 2 — cumulative module comparison (proposed = Dat + ECA + CBAM + C2PSA + PDCA)
 
 Picks a test image where BOTH proposed models beat all others on CAR / MEA / RMSE.
 """
@@ -81,11 +81,11 @@ FIG2_MODELS = [
     ("+ Data Aug\n+ ECA",
      _w("yolo11m_pose_b2_eca_e150_pat10_imgsz1280"), "attn"),
     ("+ Data Aug\n+ ECA + CBAM",
-     _w("yolo11m_pose_combo_1_2_e150_pat10_imgsz1280"), "attn"),
+     _w("yolo11m_pose_eca_cbam_e150_pat10_imgsz1280"), "attn"),
     ("+ Data Aug\n+ ECA + CBAM\n+ C2PSA",
-     _w("yolo11m_pose_combo_1_2_4_e150_pat10_imgsz1280"), "attn"),
+     _w("yolo11m_pose_eca_cbam_c2psa_e150_pat10_imgsz1280"), "attn"),
     ("+ Data Aug\n+ ECA + CBAM\n+ C2PSA + PDCA\n(Proposed)",
-     _w("yolo11m_pose_combo_1_2_4_pdca_e150_pat10_imgsz1280"), "attn"),
+     _w("yolo11m_pose_eca_cbam_c2psa_pdca_e150_pat10_imgsz1280"), "attn"),
     # Exact checkpoint for ECA+CBAM+C2PSA+SEAM (no PDCA) was not trained.
     # Using Dat+SEAM (SRD abl-C) as the SEAM competitor.
     ("+ Data Aug\n+ ECA + CBAM\n+ C2PSA + SEAM\n(Dat+SEAM*)",
@@ -444,7 +444,7 @@ def main():
         print(f"  WIN {name}: score={score:.1f}  GT={len(boxes)} "
               f"(crop={n_crop},weed={n_weed})  "
               f"PDCA-only CAR={prop1['CAR']:.0f}% F1={prop1['F1']:.0f}% MEA={prop1['MEA']:.1f} FP={prop1['n_fp']}  "
-              f"Combo CAR={prop2['CAR']:.0f}% F1={prop2['F1']:.0f}% MEA={prop2['MEA']:.1f} FP={prop2['n_fp']}")
+              f"ECA+CBAM+C2PSA+PDCA CAR={prop2['CAR']:.0f}% F1={prop2['F1']:.0f}% MEA={prop2['MEA']:.1f} FP={prop2['n_fp']}")
         if score > best_score:
             best_score = score
             best = (name, img_rgb, boxes, cache)

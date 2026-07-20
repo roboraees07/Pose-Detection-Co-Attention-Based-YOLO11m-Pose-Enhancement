@@ -83,7 +83,7 @@
     },
     {
       "label": "YOLO11m-Pose+Data Augmentation+ECA+CBAM",
-      "weights": "/home/raees/TUBITAK/Attention In YoloPosev11/runs/yolo11m_pose_combo_1_2_e150_pat10_imgsz1280/weights/best.pt",
+      "weights": "/home/raees/TUBITAK/Attention In YoloPosev11/runs/yolo11m_pose_eca_cbam_e150_pat10_imgsz1280/weights/best.pt",
       "n_images": 1157,
       "n_gt": 11772,
       "n_det": 12570,
@@ -105,7 +105,7 @@
     },
     {
       "label": "YOLO11m-Pose+Data Augmentation+ECA+CBAM+C2PSA",
-      "weights": "/home/raees/TUBITAK/Attention In YoloPosev11/runs/yolo11m_pose_combo_1_2_4_e150_pat10_imgsz1280/weights/best.pt",
+      "weights": "/home/raees/TUBITAK/Attention In YoloPosev11/runs/yolo11m_pose_eca_cbam_c2psa_e150_pat10_imgsz1280/weights/best.pt",
       "n_images": 1157,
       "n_gt": 11772,
       "n_det": 13014,
@@ -127,7 +127,7 @@
     },
     {
       "label": "YOLO11m-Pose+Data Augmentation+ECA+CBAM+C2PSA+PDCA",
-      "weights": "/home/raees/TUBITAK/Attention In YoloPosev11/runs/yolo11m_pose_combo_1_2_4_pdca_e150_pat10_imgsz1280/weights/best.pt",
+      "weights": "/home/raees/TUBITAK/Attention In YoloPosev11/runs/yolo11m_pose_eca_cbam_c2psa_pdca_e150_pat10_imgsz1280/weights/best.pt",
       "n_images": 1157,
       "n_gt": 11772,
       "n_det": 13194,

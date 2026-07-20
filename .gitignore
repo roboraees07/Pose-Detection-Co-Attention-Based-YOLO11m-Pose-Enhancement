@@ -49,5 +49,10 @@ results/confusion_matrices/
 # Overleaf zip (local only)
 PDCA_YOLO11m_Pose_Overleaf.zip
 
+# Legacy auto-generated configs (local experiments only)
+configs/combos/
+scripts/build_yolo11_combos.py
+scripts/build_yolo8_combos.py
+
 # LaTeX report (local only — not published on GitHub)
 paper_report/
