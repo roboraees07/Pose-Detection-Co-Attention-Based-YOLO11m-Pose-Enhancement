@@ -32,11 +32,11 @@ The full model processes field images through preprocessing, a YOLO11 backbone w
 
 **C2PSA** adds position-sensitive self-attention on deep semantic features, improving context for crowded or overlapping plants.
 
-![C2PSA module](docs/figures/c2psa (2).png)
+![C2PSA module](docs/figures/c2psa.png)
 
 **PDCA (Pose–Detection Co-Attention)** is the proposed module. It splits neck features into detection-oriented and pose-oriented paths, cross-gates them, and fuses the result before the Pose head. Pose features guide the detection gate and detection features guide the pose gate, so growing-point localization benefits from box context and vice versa.
 
-![PDCA module](docs/figures/pdca )2_.png)
+![PDCA module](docs/figures/pdca.png)
 
 ---
 
