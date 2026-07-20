@@ -24,7 +24,7 @@ The full model processes field images through preprocessing, a YOLO11 backbone w
 
 **ECA (Efficient Channel Attention)** recalibrates channel weights on early backbone features. This helps thin stems and edges remain visible before deeper downsampling.
 
-![ECA module](docs/figures/eca (2).png)
+![ECA module](docs/figures/eca.png)
 
 **CBAM (Convolutional Block Attention Module)** applies channel and spatial attention on mid-level features, emphasizing regions that contain plant structure.
 
