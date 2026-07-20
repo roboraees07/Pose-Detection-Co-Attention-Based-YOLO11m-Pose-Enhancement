@@ -1,0 +1,36 @@
+{
+  "variant": "CropsOrWeed9",
+  "source": "CropAndWeed dataset (WACV 2023)",
+  "paper": "Steininger et al., The CropAndWeed Dataset, WACV 2023",
+  "format": "YOLO-Pose — each line: class_id cx cy w h kx ky v (normalized)",
+  "keypoint": "Growing point (stem) — 1 keypoint per instance",
+  "classes": {
+    "0": "Maize",
+    "1": "Sugar beet",
+    "2": "Soy",
+    "3": "Sunflower",
+    "4": "Potato",
+    "5": "Pea",
+    "6": "Bean",
+    "7": "Pumpkin",
+    "8": "Weed"
+  },
+  "weed_class_id": 8,
+  "split_seed": 42,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "split_counts": {
+    "train": 5393,
+    "val": 1155,
+    "test": 1157
+  },
+  "images_with_labels": 7705,
+  "instances": 78288,
+  "avg_instances_per_image": 10.16,
+  "image_size": "variable (field images, eval at imgsz=1280)",
+  "license": "CropAndWeed — academic/non-commercial (see CropAndWeed LICENCE)",
+  "rebuild_script": "scripts/prepare_cropsorweed9.py"
+}

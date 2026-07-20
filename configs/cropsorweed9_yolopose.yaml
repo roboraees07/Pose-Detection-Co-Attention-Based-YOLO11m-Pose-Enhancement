@@ -1,0 +1,21 @@
+# CropsOrWeed9 — YOLO-Pose format (9 classes, 1 keypoint × 3 values)
+# Set CROPSORWEED9_ROOT env var or place data at data/CropsOrWeed9/
+path: ../data/CropsOrWeed9
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: Maize
+  1: Sugar beet
+  2: Soy
+  3: Sunflower
+  4: Potato
+  5: Pea
+  6: Bean
+  7: Pumpkin
+  8: Weed
+kpt_shape:
+  - 1
+  - 3
+flip_idx:
+  - 0

@@ -1,0 +1,107 @@
+{
+  "Bean1": {
+    "train": 160,
+    "val": 34,
+    "test": 35
+  },
+  "Bean2": {
+    "train": 5425,
+    "val": 1162,
+    "test": 1164
+  },
+  "Coarse1": {
+    "train": 5460,
+    "val": 1170,
+    "test": 1170
+  },
+  "CropAndWeed": {
+    "train": 5425,
+    "val": 1162,
+    "test": 1164
+  },
+  "CropOrWeed2": {
+    "train": 5393,
+    "val": 1155,
+    "test": 1157
+  },
+  "CropsOrWeed9": {
+    "train": 5393,
+    "val": 1155,
+    "test": 1157
+  },
+  "Fine24": {
+    "train": 5393,
+    "val": 1155,
+    "test": 1157
+  },
+  "Maize1": {
+    "train": 1283,
+    "val": 275,
+    "test": 276
+  },
+  "Maize2": {
+    "train": 5425,
+    "val": 1162,
+    "test": 1164
+  },
+  "Pea1": {
+    "train": 123,
+    "val": 26,
+    "test": 27
+  },
+  "Pea2": {
+    "train": 5425,
+    "val": 1162,
+    "test": 1164
+  },
+  "Potato1": {
+    "train": 75,
+    "val": 16,
+    "test": 17
+  },
+  "Potato2": {
+    "train": 5425,
+    "val": 1162,
+    "test": 1164
+  },
+  "Pumpkin1": {
+    "train": 221,
+    "val": 47,
+    "test": 49
+  },
+  "Pumpkin2": {
+    "train": 5425,
+    "val": 1162,
+    "test": 1164
+  },
+  "Soy1": {
+    "train": 235,
+    "val": 50,
+    "test": 51
+  },
+  "Soy2": {
+    "train": 5425,
+    "val": 1162,
+    "test": 1164
+  },
+  "SugarBeet1": {
+    "train": 847,
+    "val": 181,
+    "test": 182
+  },
+  "SugarBeet2": {
+    "train": 5425,
+    "val": 1162,
+    "test": 1164
+  },
+  "Sunflower1": {
+    "train": 413,
+    "val": 88,
+    "test": 89
+  },
+  "Sunflower2": {
+    "train": 5425,
+    "val": 1162,
+    "test": 1164
+  }
+}

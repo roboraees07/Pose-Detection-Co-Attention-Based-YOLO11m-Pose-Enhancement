@@ -1,0 +1,53 @@
+# Git ignore patterns for PDCA-YOLO11-Pose
+
+# Dataset (~11 GB — included locally, excluded from git)
+data/CropsOrWeed9/images/
+data/CropsOrWeed9/labels/
+data/CropsOrWeed9/all_labels/
+# Keep dataset metadata in git
+!data/CropsOrWeed9/dataset_info.json
+!data/data_split_by_variant_pose.json
+!data/README.md
+
+# Training outputs
+runs/**/weights/
+runs/**/*.pt
+runs/**/*.cache
+runs/**/wandb/
+
+# Keep metrics JSON/CSV in runs if small
+!runs/**/*_eval_conf*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# Ultralytics downloads (auto-fetched pretrained weights)
+*.pt
+!configs/**/*.yaml
+
+# Logs and partial outputs
+*.log
+nohup.out
+*.partial
+
+# Large generated figures (keep CSV/JSON tables in results/reference/)
+results/*.png
+results/visual_orig_vs_pred/
+results/confusion_matrices/
+
+# Overleaf zip (local only)
+PDCA_YOLO11m_Pose_Overleaf.zip
+
+# LaTeX report (local only — not published on GitHub)
+paper_report/
