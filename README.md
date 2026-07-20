@@ -172,4 +172,3 @@ Pre-computed tables: `results/reference/`
 }
 ```
 
-Please also cite your paper if you use this code.
